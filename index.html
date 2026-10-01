@@ -1,82 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>pineapple</title>
+<title>pineapples</title>
 <style>
 body {
-    background-color: cyan;
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+background: cyan;
+margin: 0;
+height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+overflow: hidden;
+cursor: pointer;
 }
-
-.pineapple {
-    font-size: 150px;
-    animation: shake 0.1s infinite;
-    user-select: none;
+.p {
+font-size: 150px;
+animation: sh 0.1s infinite;
+user-select: none;
 }
-
-@keyframes shake {
-    0% { transform: translate(3px, 1px) rotate(0deg); }
-    25% { transform: translate(-2px, -2px) rotate(-3deg); }
-    50% { transform: translate(1px, 3px) rotate(3deg); }
-    75% { transform: translate(-3px, 0px) rotate(-1deg); }
-    100% { transform: translate(2px, -1px) rotate(2deg); }
+@keyframes sh {
+0% { transform: translate(3px, 1px) rotate(0deg); }
+25% { transform: translate(-2px, -2px) rotate(-3deg); }
+50% { transform: translate(1px, 3px) rotate(3deg); }
+75% { transform: translate(-3px, 0px) rotate(-1deg); }
+100% { transform: translate(2px, -1px) rotate(2deg); }
 }
-
-.bar-bg {
-    width: 90%;
-    max-width: 500px;
-    height: 20px;
-    background: #00aaaa;
-    border: 2px solid #005555;
-    margin-top: 80px;
-    overflow: hidden;
+.b {
+width: 80%;
+max-width: 500px;
+height: 25px;
+background: #008888;
+border: 3px solid #004444;
+margin-top: 60px;
 }
-
-.bar-fill {
-    width: 0%;
-    height: 100%;
-    background: #ffff00;
+.f {
+width: 0%;
+height: 100%;
+background: yellow;
 }
 </style>
 </head>
 <body>
 
-<div class="pineapple">🍍</div>
-
-<div class="bar-bg">
-    <div class="bar-fill" id="fill"></div>
-</div>
-
-<audio id="bgm" src="pineapples.mp3" loop autoplay></audio>
+<div class="p">🍍</div>
+<div class="b"><div class="f" id="f"></div></div>
+<audio id="a" src="pineapples.mp3" loop></audio>
 
 <script>
-const fill = document.getElementById('fill');
-const bgm = document.getElementById('bgm');
+let a = document.getElementById('a')
+let f = document.getElementById('f')
+let c = false
 
-bgm.play().catch(() => {});
+document.body.onclick = () => {
+if(!c) {
+a.play()
+c = true
+}
+}
 
-const duration = 3600 * 1000;
-const start = Date.now();
+let s = Date.now()
+let d = 3600000
 
-const tick = setInterval(() => {
-    let elapsed = Date.now() - start;
-    let p = (elapsed / duration) * 100;
-    
-    if (p >= 100) {
-        p = 100;
-        clearInterval(tick);
-        window.location.href = 'https://discord.gg/c00lkiddtechv2';
-    }
-    
-    fill.style.width = p + '%';
-}, 1000);
+setInterval(() => {
+let p = ((Date.now() - s) / d) * 100
+if (p >= 100) {
+window.location.href = 'https://discord.gg/c00lkiddtechv2'
+}
+f.style.width = p + '%'
+}, 1000)
 </script>
-
 </body>
 </html>
